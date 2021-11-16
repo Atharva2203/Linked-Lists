@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    struct Node *next;
+}*first=NULL;
+
+void create(int A[],int n)
+{
+    struct Node *t,*last;
+    first=new Node;
+    first->data=A[0];
+    first->next=NULL;
+    last=first;
+    
+    for(int i=1;i<n;i++)
+    {
+        t=new Node;
+        t->data=A[i];
+        t->next=NULL;
+        last->next=t;
+        last=t;
+    }
+}    
+
+int Middle(struct Node *p)
+{
+    struct Node *q;
+    q=first;
+    while(q!=NULL)
+    {
+        q=q->next;
+        if(q!=NULL)
+            q=q->next;
+        if(q!=NULL)
+            p=p->next;    
+    }
+    
+    return p->data;
+}
+
+int main()
+{
+    int A[]={8,6,3,9,10,4,20};
+    create(A,7);
+    cout<<Middle(first);
+    return 0;
+} 
